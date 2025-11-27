@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 interface FoodItem {
@@ -34,13 +35,13 @@ const MenuSection: React.FC = () => {
 
   const handleAddToCart = (item: FoodItem) => {
     if (!isLoggedIn) {
-      alert("Please login first!");
+      toast("Please login first!", { icon: "🔒" });
       navigate("/login");
       return;
     }
 
-    dispatch(addToCart(item));
-    alert("Item added to cart!");
+    dispatch(addToCart({ ...item, quantity: 1 } as any));
+    toast.success("Item added to cart!");
   };
 
   return (

@@ -22,12 +22,12 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signupUser: (state, action: PayloadAction<User>) => {
+    signupUser: (_state, action: PayloadAction<User>) => {
       const users: User[] = JSON.parse(localStorage.getItem("users") || "[]");
 
       // prevent duplicate signup
       if (users.some((u) => u.email === action.payload.email)) {
-        alert("User already exists!");
+        // duplicate - do nothing (component handles feedback)
         return;
       }
 
@@ -45,7 +45,7 @@ const authSlice = createSlice({
       );
 
       if (!found) {
-        alert("No user found or incorrect credentials!");
+        // not found - component will handle error
         return;
       }
 

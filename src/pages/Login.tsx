@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/authSlice";
+import toast from "react-hot-toast";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -30,9 +31,10 @@ const Login: React.FC = () => {
   // Check result saved to localStorage by reducer (synchronous)
   const saved = localStorage.getItem("loggedUser");
   if (saved) {
-    alert("Login Successful!");
+    toast.success("Login Successful!");
     navigate("/");
   } else {
+    toast.error("No user found or incorrect credentials.");
     setError("No user found or incorrect credentials.");
   }
 };
@@ -65,7 +67,7 @@ const Login: React.FC = () => {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700"
+          className="w-full bg-amber-400 text-white py-3 rounded-lg hover:bg-amber-500"
         >
           Login
         </button>
@@ -74,7 +76,7 @@ const Login: React.FC = () => {
           I don't have an account?{" "}
           <span
             onClick={() => navigate("/signup")}
-            className="text-blue-600 cursor-pointer hover:underline"
+            className="text-amber-400 cursor-pointer hover:underline"
           >
             Sign Up
           </span>

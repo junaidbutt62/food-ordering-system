@@ -3,7 +3,8 @@ import { ShoppingCart, Menu, X, User, User2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {logoutUser} from '../redux/authSlice'
+import { logoutUser } from "../redux/authSlice";
+import toast from "react-hot-toast";
 
 
 const Navbar: React.FC = () => {
@@ -11,12 +12,11 @@ const Navbar: React.FC = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useSelector((state: any) => state.auth);
   const dispatch = useDispatch();
-
-const handleLogout = () => {
-  dispatch(logoutUser());
-  alert("Logged out!");
-  navigate("/login");
-};
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    toast("Logged out", { icon: "👋" });
+    navigate("/login");
+  };
 
 
 

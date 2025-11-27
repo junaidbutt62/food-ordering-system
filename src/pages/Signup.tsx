@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signupUser } from "../redux/authSlice";
+import toast from "react-hot-toast";
 
 const Signup: React.FC = () => {
   const navigate = useNavigate();
@@ -45,9 +46,10 @@ const Signup: React.FC = () => {
   const users = JSON.parse(localStorage.getItem("users") || "[]");
   const exists = users.some((u: any) => u.email === email);
   if (exists) {
-    alert("Signup successful!");
+    toast.success("Signup successful!");
     navigate("/login");
   } else {
+    toast.error("Unable to signup. User may already exist.");
     setError("Unable to signup. User may already exist.");
   }
 };
@@ -90,7 +92,7 @@ const Signup: React.FC = () => {
 
         <button
           onClick={handleSignup}
-          className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition"
+          className="w-full bg-amber-400 text-white py-3 rounded-lg hover:bg-amber-500 transition"
         >
           Sign Up
         </button>
@@ -99,7 +101,7 @@ const Signup: React.FC = () => {
           Already have an account?{" "}
           <span
             onClick={() => navigate("/login")}
-            className="text-blue-600 cursor-pointer hover:underline"
+            className="text-amber-400 cursor-pointer hover:underline"
           >
             Login
           </span>
