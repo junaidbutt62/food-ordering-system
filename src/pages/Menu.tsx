@@ -45,7 +45,7 @@ const MenuSection: React.FC = () => {
   };
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-10">
+    <section id="Menu" className="max-w-7xl mx-auto px-4 py-10">
       <h2 className="text-3xl font-bold text-center mb-8">
         🍗 Our Fried Chicken Menu
       </h2>

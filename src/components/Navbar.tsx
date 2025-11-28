@@ -18,6 +18,24 @@ const Navbar: React.FC = () => {
     navigate("/login");
   };
 
+  const scrollToId = (id: string) => {
+    // if element exists on current page, scroll to it
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setOpen(false);
+      return;
+    }
+
+    // otherwise navigate to home and try after a short delay
+    navigate("/");
+    setOpen(false);
+    setTimeout(() => {
+      const el2 = document.getElementById(id);
+      if (el2) el2.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 200);
+  };
+
 
 
   return (
@@ -25,14 +43,13 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 h-16 flex justify-between items-center">
 
         {/* Logo */}
-        <h1 className="text-2xl font-bold text-amber-400">MyStore</h1>
+        <h1 className="text-2xl font-bold text-amber-400 cursor-pointer">FoodieHub</h1>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <li className="hover:text-amber-400 cursor-pointer">Home</li>
-          <li className="hover:text-amber-400 cursor-pointer">Products</li>
-          <li className="hover:text-amber-400 cursor-pointer">About</li>
-          <li className="hover:text-amber-400 cursor-pointer">Contact</li>
+          <li onClick={() => scrollToId("Menu")} className="hover:text-amber-400 cursor-pointer">Menu</li>
+          <li onClick={() => scrollToId("About")} className="hover:text-amber-400 cursor-pointer">About Us</li>
+          <li onClick={() => scrollToId("Contact")} className="hover:text-amber-400 cursor-pointer">Contact</li>
         </ul>
         <div className="flex">
           {/* Cart Button */}
@@ -66,10 +83,10 @@ const Navbar: React.FC = () => {
       {open && (
         <div className="md:hidden bg-white shadow-lg">
           <ul className="flex flex-col space-y-4 px-6 py-4 text-gray-700 font-medium">
-            <li className="hover:text-amber-400 cursor-pointer">Home</li>
-            <li className="hover:text-amber-400 cursor-pointer">Products</li>
-            <li className="hover:text-amber-400 cursor-pointer">About</li>
-            <li className="hover:text-amber-400 cursor-pointer">Contact</li>
+            <li onClick={() => scrollToId("Home")} className="hover:text-amber-400 cursor-pointer">Home</li>
+            <li onClick={() => scrollToId("Menu")} className="hover:text-amber-400 cursor-pointer">Menu</li>
+            <li onClick={() => scrollToId("About")} className="hover:text-amber-400 cursor-pointer">About Us</li>
+            <li onClick={() => scrollToId("Contact")} className="hover:text-amber-400 cursor-pointer">Contact</li>
 
             <button onClick={() => navigate("/cart")} className="flex items-center gap-2 bg-amber-400 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
               <ShoppingCart size={20} /> Cart

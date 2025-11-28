@@ -8,7 +8,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="w-full h-screen py-30" style={{
+    <section id="Home" className="w-full h-screen py-30" style={{
       backgroundImage:
         "url('https://img.freepik.com/free-photo/top-view-circular-food-frame_23-2148723455.jpg?semt=ais_hybrid&w=1550&q=80')",
 
@@ -16,8 +16,9 @@ export default function Hero() {
       //   backgroundRepeat:"no-repeat",
     }}>
       <div className="w-full h-full flex flex-col justify-around items-center px-4 text-center">
-        <h1 className="text-5xl font-bold text-gray-900 tracking-wider leading-normal">
-          Its not just <br />Food, its an <br />Experience
+        <h1 style={{ fontFamily: `"Rubik Microbe", system-ui` }}
+          className="text-5xl font-bold text-gray-900 tracking-wider leading-normal">
+          Its not just <br /> <span className="text-amber-400">Food,</span> its an <br /><span className="text-amber-400"> Experience</span>
         </h1>
 
         <p className="text-gray-600 text-lg ">
